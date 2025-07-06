@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = async (email, senha) => {
-    const res = await fetch('http://localhost:5000/api/auth/login', {
+    const res = await fetch('https://localhost:5000/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, senha })

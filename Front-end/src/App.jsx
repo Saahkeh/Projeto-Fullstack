@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Login from './components/Login';
+import React, { useState, useEffect, useContext } from 'react';
 import FilmeForm from './components/FilmeForm';
 import FilmeLista from './components/FilmeLista';
 import { AuthContext } from './contexts/AuthContext';
+import Login from './components/Login';
 import './css/style.css';
 
-
 export default function App() {
-  const { state } = useContext(AuthContext);
+  const { state, dispatch } = useContext(AuthContext);
   const [filmes, setFilmes] = useState([]);
 
   useEffect(() => {
     if (state.token) {
-      // Buscar filmes do backend ao logar
-      fetch('http://localhost:5000/api/filmes', {
+      fetch('https://localhost:5000/api/filmes', {
         headers: { Authorization: `Bearer ${state.token}` }
       })
         .then(res => res.json())
@@ -25,7 +23,23 @@ export default function App() {
   const aoCadastrar = (novoFilme) => {
     setFilmes((anteriores) => [...anteriores, novoFilme]);
   };
-
+  
+  const aoRemover = async (id) => {
+    try {
+      await fetch(`https://localhost:5000/api/filmes/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${state.token}`
+        }
+      });
+      setFilmes(filmes.filter(filme => filme._id !== id));
+    } catch (err) {
+      alert('Erro ao remover filme');
+    }
+  };
+  const sair = () => {
+    dispatch({ type: 'LOGOUT' });
+  };
   return (
     <div>
       <h1>Catálogo de Filmes</h1>
@@ -34,10 +48,10 @@ export default function App() {
       ) : (
         <>
           <FilmeForm aoCadastrar={aoCadastrar} />
-          <FilmeLista filmes={filmes} />
+          <FilmeLista filmes={filmes} aoRemover={aoRemover} />
+          <button onClick={sair} class= "logout">Sair</button>
         </>
       )}
     </div>
   );
 }
-

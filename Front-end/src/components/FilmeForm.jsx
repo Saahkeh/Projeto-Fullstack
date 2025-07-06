@@ -9,13 +9,14 @@ export default function FilmeForm({ aoCadastrar }) {
 
   const salvar = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/filmes', {
+      const res = await fetch('https://localhost:5000/api/filmes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${state.token}`
         },
         body: JSON.stringify({ titulo, genero, ano: Number(ano) })
+
       });
 
       const novoFilme = await res.json();
