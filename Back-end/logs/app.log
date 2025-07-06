@@ -38,3 +38,15 @@
 [2025-07-06 19:52:46] info: GET /api/filmes
 [2025-07-06 19:53:13] info: POST /api/filmes
 [2025-07-06 19:53:13] info: Filme cadastrado:
+[2025-07-06 20:19:02] info: Servidor HTTPS rodando na porta 5000
+[2025-07-06 20:19:02] info: MongoDB conectado
+[2025-07-06 20:19:09] info: DELETE /api/filmes/undefined
+[2025-07-06 20:19:11] error: Erro ao excluir filme
+[2025-07-06 20:19:26] info: POST /api/filmes
+[2025-07-06 20:19:26] info: Filme cadastrado
+[2025-07-06 20:19:41] info: POST /api/auth/login
+[2025-07-06 20:19:43] info: Login bem-sucedido
+[2025-07-06 20:19:44] info: GET /api/filmes
+[2025-07-06 20:19:44] info: Filmes listados
+[2025-07-06 20:19:48] info: DELETE /api/filmes/686b047ed7fad00521154d94
+[2025-07-06 20:19:48] info: Filme excluído
